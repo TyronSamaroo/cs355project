@@ -1,0 +1,21 @@
+
+#searchfield {
+    outline:none;
+    width: 80%;
+    height: 40px;
+    border-radius: 15px;
+    border: 2px black solid;
+    box-shadow: 1px 1px 25px;
+    color:black;
+    padding: 5px 5px 5px 25px;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    
+}
+
+#searchtitle{
+    font-family: Chalkduster, fantasy;
+    padding: 20px;
+    
+}

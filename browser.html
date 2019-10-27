@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Project</title>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Internet and Web Tech</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browser
+              <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#navloc">Navigator</a></li>
+                            <li><a href="#winloc">Window</a></li>
+                            <li><a href="#scrloc">Screen</a></li>
+                            <li><a href="#locloc">Location</a></li>
+                            <li><a href="#geoloc">Geolocation</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Course
+              <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://www.zybooks.com" target="_blank">Zybook</a></li>
+                            <li><a href="https://tophat.com/" target="_blank">TopHat</a></li>
+                            <li><a href="https://tinyurl.com/CSCI355-Fall2019" target="_blank">Course Google Drive</a></li>
+                            <li><a href="https://www.w3schools.com/" target="_blank">W3Schools</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">About
+                <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="aboutme.html">Developer</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </li>
+               </ul>           
+            </div>
+        </div>           
+    </nav>
+
+
+
+
+<div class="container-fluid">
+    <!-- Row 1 With Info on Browser -->
+    <div class="row">
+        <div class="col">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="navloc">
+                    <h3 class="panel-title">Navigator</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="nav" id="appName"></div><br>
+                    <div class="nav" id="product"></div><br>
+                    <div class="nav" id="appVersion"></div><br>
+                    <div class="nav" id="userAgent"></div><br>
+                    <div class="nav" id="platform"></div><br>
+                    <div class="nav" id="language"></div><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="winloc">
+                    <h3 class="panel-title" >Window</h3>
+                </div>
+                <div class="panel-body" >
+                    <div class="win" id="inherHeight"></div><br>
+                    <div class="win" id="innerWidth"></div><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2 Browser Info  -->
+    <div class="row">
+        <div class="col">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="srcloc">
+                    <h3 class="panel-title">Screen</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="scre" id="width"></div><br>
+                    <div class="scre" id="height"></div><br>
+                    <div class="scre" id="availWidth"></div><br>
+                    <div class="scre" id="availHeight"></div><br>
+                    <div class="scre" id="colorDepth"></div><br>
+                    <div class="scre" id="pixelDepth"></div><br>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="locloc">
+                    <h3 class="panel-title">Location</h3>
+                </div>
+                <div class="panel-body"id="Location">
+                   <div class="loc" id="href"></div><br>
+                   <div class="loc" id="hostname"></div><br>
+                   <div class="loc" id="pathname"></div><br>
+                   <div class="loc" id="protocal"></div><br>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="panel panel-default">
+                <div class="panel-heading" id="geoloc">
+                    <h3 class="panel-title">Geolocation</h3>
+                </div>
+                <div class="panel-body" id="Geolocation">
+                        <div class = "geo" id= "latitude"></div><br>
+                        <div class = "geo" id= "longitude"></div><br>    
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <script>
+        document.getElementById("appName").innerHTML = 'App Name is: ' + navigator.appCodeName;
+        document.getElementById("product").innerHTML = 'Product is: ' + navigator.product;
+        document.getElementById("appVersion").innerHTML = 'App Version is: ' + navigator.appVersion;
+        document.getElementById("userAgent").innerHTML = 'User Agent is: ' + navigator.userAgent;
+        document.getElementById("platform").innerHTML = 'Platform is: ' + navigator.platform;
+        document.getElementById("language").innerHTML = 'Language is: ' + navigator.language;
+
+        document.getElementById("inherHeight").innerHTML = 'Window Height is: ' + window.innerHeight;
+        document.getElementById("innerWidth").innerHTML = 'Window Width is: ' + window.innerWidth;
+
+        document.getElementById("width").innerHTML = 'Screen Width is: ' + screen.width;
+        document.getElementById("height").innerHTML = 'Screen Height is: ' + screen.height;
+        document.getElementById("availWidth").innerHTML = 'Screen Avail Width is: ' + screen.availWidth;
+        document.getElementById("availHeight").innerHTML = 'Screen Avail Height is: ' + screen.availHeight;
+        document.getElementById("colorDepth").innerHTML = 'Screen Color Depth is: ' + screen.colorDepth;
+        document.getElementById("pixelDepth").innerHTML = 'Screen Pixel Depth is: ' + screen.pixelDepth;
+
+        document.getElementById("href").innerHTML = 'Href is: ' + location.href;
+        document.getElementById("hostname").innerHTML = 'HostName is: ' + location.hostname;
+        document.getElementById("pathname").innerHTML = 'PathName is: ' + location.pathname;
+        document.getElementById("protocal").innerHTML = 'Protocol is: ' + location.protocol;
+
+        var x = document.getElementById("latitude");
+        var y = document.getElementById("longitude");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            x.innerHTML = 'Latitude: ' + position.coords.latitude;
+            y.innerHTML = 'Longitude: ' + position.coords.longitude;
+        }
+
+        getLocation()
+        
+    </script>
+
+</body>
+
+</html>
