@@ -1,6 +1,21 @@
 
 
+@media screen and (max-width: 481px){
 
+#displayedresults{
+    float: left;
+    width: 94%;
+
+}
+li{
+    
+    float: left;
+    text-align: center;
+}
+
+    
+
+}
 #searchtitle{
     font-family: Chalkduster, fantasy;
     padding: 20px;
@@ -8,8 +23,8 @@
 }
 
 input[type=checkbox] {
-    float: right;
-    transform: scale(2.5);
+    float: left;
+    transform: scale(1.5);
 }
 
 #displayedresults{
