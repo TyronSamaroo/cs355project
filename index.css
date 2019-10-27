@@ -19,3 +19,9 @@
     padding: 20px;
     
 }
+
+input[type=checkbox] {
+    float: left;
+    margin: 5px -20px;
+    transform: scale(2.5);
+}

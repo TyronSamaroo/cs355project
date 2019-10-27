@@ -57,7 +57,7 @@
         </div>
     </nav>
     
-
+<!-- 
     <form action="Test1.asp">
         <input type="button" value="Upload" onclick="clickUpload();" />
         <input type="button" value="Download" onclick="clickDownload();" />
@@ -66,7 +66,11 @@
         </form>
         <form id="DownloadForm" action="Test4.asp">
         </form>
-    </form>
+    </form> -->
+    <div>
+        <input type="file" id="myFile" onchange= "displayFile()">
+
+    </div>
     <div style="text-align: center;padding: 20%"> 
             
             <h1 id="searchtitle">SEARCH HERE</h1>
@@ -82,25 +86,41 @@
 
     </div>
           
-   
-    
-    
-        <script type="text/javascript">
+   <script>
+       function displayFile(){
+           
+           var file = document.getElementById('myFile');
+           console.log(file.files.item(0).name);
+           var filename = file.files.item(0).name;
+           let url =`${filename}`;
+           fetch(url)
+           .then(res => res.text())
+           .then(data =>{
+               console.log(data);
 
- 
-            function clickUpload() {
-                document.getElementById("UploadFile").click();
-            }
+               let parser = new DOMParser();
+               let xml = parser.parseFromString(data,"application/xml");
+               //document.getElementById('output').textContent = data;
+               console.log(xml)
+               results(xml);
+           });
+           output = `
+            <a href="${file.files.item(0).name}" target="_blank">${file.files.item(0).name}</a>
+           `
+           document.getElementById('output').innerHTML = output;
+       }
+       function results(xml){
+           let title = document.getElementById('title');
+           let url = document.getElementById('url');
+           let discription = document.getElementById('discription');
+           //console.log(title.firstChild.nodeValue);
+       }
+       
+   
+   </script>
     
-            function clickDownload() {
-                document.getElementById("DownloadForm").submit();
-            }
     
-            function MakeUpload() {
-                document.getElementById("UploadForm").submit();
-            }
     
-        </script>
     <script>
         document.getElementById('search-param').addEventListener('submit',getResults);
         function getResults(e){
@@ -113,10 +133,22 @@
                     console.log(data.items);
                     data.items.forEach(search =>{
                         output += `
-                        <ul class= "list-group mb-3"> 
-                            <li class="list-group-item"> ${search.title} </li>
-                            <li class="list-group-item"> ${search.link} </li>
-                        </ul>
+                        <div>
+                            
+                            
+                            <ul class= "list-group list-group-flush mb-3"> 
+                                <li>
+                                    <span>
+                                        <input type="checkbox" name="searchfiles" value=searchfiles>     
+                                    </span>    
+                                    
+                                </li>
+                                <li class="list-group-item"> ${search.title} </li>
+                                <li class="list-group-item"> 
+                                        <a href="${search.link}" target="_blank">${search.link}</a>
+                                </li>
+                            </ul>
+                        </div>
                         `;
                     })
                     document.getElementById('output').innerHTML = output;
