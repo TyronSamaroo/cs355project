@@ -4,18 +4,16 @@
 
 #displayedresults{
     float: left;
+    padding: 0;
     width: 94%;
 
 }
-li{
-    
-    float: left;
-    text-align: center;
-}
 
-    
+
 
 }
+
+
 #searchtitle{
     font-family: Chalkduster, fantasy;
     padding: 20px;
@@ -25,10 +23,4 @@ li{
 input[type=checkbox] {
     float: left;
     transform: scale(1.5);
-}
-
-#displayedresults{
-    align-self: auto;
-    
-
 }

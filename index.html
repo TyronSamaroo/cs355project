@@ -145,12 +145,11 @@
                             
                             <input type="checkbox" name="searchfiles" value=searchfiles>
                             <hr>   
-                            <ul class= "list-group mb-4"> 
-                                <li class="list-group-item"> ${search.title} </li>
-                                <li class="list-group-item"> 
-                                        <a href="${search.link}" target="_blank">${search.link}</a>
-                                </li>
-                            </ul>
+                            <div class= "list-group mb-4"> 
+                                <p class="list-group-item list-group-item-warning"> ${search.title} </p>
+                                <a class="list-group-item list-group-item-info" href="${search.link}" target="_blank">${search.link}</a>
+                              
+                            </div>
                         </div>
                         `;
                     })
