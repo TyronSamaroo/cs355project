@@ -82,11 +82,10 @@
             </form> 
             <hr>
             <div class="input-group">
-                <h4>ONLY JSON XML CSV ALLOWED</h4>
-                <span>
-                    <input type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv" >
+                
+                <input type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv" >
                     <br>
-                    <button  class="input-group" onclick="displayUploadedFile()">Click To Display Uploaded File Results</button>
+                    <button  class="input-group" onclick="displayUploadedFile();">Click To Display Uploaded File Results</button>
                 </span>
             </div>
             
@@ -95,9 +94,9 @@
 
             <h2 id="searchtitle">RESULTS</h2>
             <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default" onclick="displayUploadedFile()">JSON</button>
-                    <button type="button" class="btn btn-default" onclick="uploadedFileToXML()">XML</button>
-                    <button type="button" class="btn btn-default" onclick="UploadedFileToCSV()">CSV</button>
+                    <button type="button" class="btn btn-default" onclick="ConvertFileToJSON()">JSON</button>
+                    <button type="button" class="btn btn-default" onclick="ConvertFileToXML()">XML</button>
+                    <button type="button" class="btn btn-default" onclick="ConvertFileToCSV()">CSV</button>
             </div>
             <input type="checkbox" onClick="toggle(this)" />
             
@@ -110,7 +109,58 @@
 
     </div>
     <script>
+    //ConvertFile So It can be downloaded
+    function ConvertFileToJSON(){
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        let format = [];
+
+        for(var x = 1; x < checkboxes.length; x++){
+            //console.log(checkboxes[x])
+            let resultag = document.getElementById(`check${x-1}`).nextElementSibling.nextElementSibling.childNodes;
+            //console.log(resultag)
+            console.log(resultag[1].textContent)
+            console.log(resultag[3].textContent)
+            console.log(resultag[5].textContent)
+                let dataobject = {
+                    title : resultag[1].textContent,
+                    url : resultag[3].textContent,
+                    description : resultag[5].textContent
+                }
+                format.push(dataobject);
+            
+            
+        }
+
+       
+        let final = {Result : format}
+        let text = JSON.stringify(final)
+        console.log(text)
+        let element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        element.setAttribute('download', `filename.json`);
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+        
+
+    }
+
+
+    </script>
+    <script>
     // Uploaded Functions
+    function displayUploadedFileNormalJson(){
+        var file = document.getElementById ("uploadedFile");
+            console.log(file.value.split('.')[1]);
+            if(file.value.split('.')[1] == 'json'){
+                console.log("JSON FILE")
+                
+            }
+    }
+
+
+
     function displayUploadedFile () {
             var file = document.getElementById ("uploadedFile");
             console.log(file.value.split('.')[1]);
@@ -132,12 +182,14 @@
     function displayJSON(file){
         
         var filename = file.files.item(0).name;
+        
         let url =`${filename}`;
         console.log("URL" + url)
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log(data.Result)
+                
+               
                 // data.items.forEach(search =>{ })
                 let output = ''
                 count = 0;
@@ -147,11 +199,11 @@
                             
                             <input id= "check${count}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
                             <hr> 
-                            <div class= "list-group mb-4"> 
-                                <li class="list-group-item list-group-item-info"> ${search.title} </li>
+                            <div class= "list-group mb-4" id= "result${count}"> 
+                                <li class="list-group-item list-group-item-info">${search.title}</li>
                                 
                                 <a class="list-group-item list-group-item-sucess" href="${search.url}" target="_blank">${search.url}</a>
-                                <li class="list-group-item list-group-item-warning"> ${search.description} </li>
+                                <li class="list-group-item list-group-item-warning">${search.description}</li>
                               
                             </div>`
                             count++;
@@ -181,11 +233,11 @@
                             
                             <input id= "check${i}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
                             <hr> 
-                            <div class= "list-group mb-4"> 
-                                <li class="list-group-item list-group-item-info"> ${xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue} </li>
+                            <div class= "list-group mb-4" id= "result${i}"> 
+                                <li class="list-group-item list-group-item-info">${xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue}</li>
                                 
                                 <a class="list-group-item list-group-item-sucess" href="${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}" target="_blank">${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}</a>
-                                <li class="list-group-item list-group-item-warning"> ${xmlDoc.getElementsByTagName("description")[i].childNodes[0].nodeValue} </li>
+                                <li class="list-group-item list-group-item-warning">${xmlDoc.getElementsByTagName("description")[i].childNodes[0].nodeValue}</li>
                               
                             </div>`
                 }
@@ -213,11 +265,11 @@
                             
                             <input id= "check${i}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
                             <hr> 
-                            <div class= "list-group mb-4"> 
-                                <li class="list-group-item list-group-item-info"> ${results[0]} </li>
+                            <div class= "list-group mb-4" id= "result${i}"> 
+                                <li class="list-group-item list-group-item-info">${results[0]}</li>
                                 
                                 <a class="list-group-item list-group-item-sucess" href="${results[1]}" target="_blank">${results[1]}</a>
-                                <li class="list-group-item list-group-item-warning"> ${results[2]} </li>
+                                <li class="list-group-item list-group-item-warning">${results[2]}</li>
                               
                             </div>`    
                 }
@@ -289,11 +341,11 @@
                             
                             <input id= "check${count}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
                             <hr>   
-                            <div class= "list-group mb-4"> 
-                                <li class="list-group-item list-group-item-info"> ${search.title} </li>
+                            <div class= "list-group mb-4" id= "results${count}"> 
+                                <li class="list-group-item list-group-item-info"> ${search.title}</li>
                                 
                                 <a class="list-group-item list-group-item-sucess" href="${search.link}" target="_blank">${search.htmlFormattedUrl}</a>
-                                <li class="list-group-item list-group-item-warning"> ${search.snippet} </li>
+                                <li class="list-group-item list-group-item-warning"> ${search.snippet}</li>
                               
                             </div>
                         </div>
