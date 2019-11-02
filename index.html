@@ -68,10 +68,7 @@
         <form id="DownloadForm" action="Test4.asp">
         </form>
     </form> -->
-    <div>
-        <input type="file" id="myFile" onchange= "displayFile()">
-
-    </div>
+    
 
     
     <div style="text-align: center;padding: 20%"> 
@@ -84,15 +81,155 @@
 
             </form> 
             <hr>
-            <h2 id="searchtitle">SEARCH RESULTS</h2>
-            <input type="checkbox" onClick="toggle(this)" /> Select All
-            <hr/>
-            <div id="output">    
+            <div class="input-group">
+                <h4>ONLY JSON XML CSV ALLOWED</h4>
+                <input type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv" >
+                <button  class="input-group" onclick="displayUploadedFile()">Click To Display Uploaded File Results</button>
+            </div>
+            
+            
+            <hr>
+
+            <h2 id="searchtitle">RESULTS</h2>
+            <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" onclick="displayUploadedFile()">JSON</button>
+                    <button type="button" class="btn btn-default" onclick="uploadedFileToXML()">XML</button>
+                    <button type="button" class="btn btn-default" onclick="UploadedFileToCSV()">CSV</button>
+            </div>
+            <input type="checkbox" onClick="toggle(this)" />
+            
+            <hr>
+            <div id="output">
+
             </div>
     </div>
     
 
     </div>
+    <script>
+    // Uploaded Functions
+    function displayUploadedFile () {
+            var file = document.getElementById ("uploadedFile");
+            console.log(file.value.split('.')[1]);
+            if(file.value.split('.')[1] == 'json'){
+                console.log("JSON FILE")
+                displayJSON(file)
+            }
+            if(file.value.split('.')[1] == 'xml'){
+                console.log("XML FILE")
+                displayXML(file)
+            }
+            if(file.value.split('.')[1] == 'csv'){
+                console.log("CSV FILE")
+                displayCSV(file) 
+            }
+            
+    }
+
+    function displayJSON(file){
+        
+        var filename = file.files.item(0).name;
+        let url =`${filename}`;
+        console.log("URL" + url)
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.Result)
+                // data.items.forEach(search =>{ })
+                let output = ''
+                count = 0;
+                data.Result.forEach(search =>{
+                    output += `
+                            <div id= "displayedresults">
+                            
+                            <input id= "check${count}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
+                            <hr> 
+                            <div class= "list-group mb-4"> 
+                                <li class="list-group-item list-group-item-info"> ${search.title} </li>
+                                
+                                <a class="list-group-item list-group-item-sucess" href="${search.url}" target="_blank">${search.url}</a>
+                                <li class="list-group-item list-group-item-warning"> ${search.description} </li>
+                              
+                            </div>`
+                            count++;
+                        })
+                    
+                document.getElementById('output').innerHTML = output;
+            })
+        
+    }
+
+    function displayXML(file){
+        var filename = file.files.item(0).name;
+        let url =`${filename}`;
+        console.log("URL" + url)
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+                console.log(data)
+                parser = new DOMParser();
+                xmlDoc = parser.parseFromString(data,"text/xml");
+                console.log(xmlDoc)
+                let length = xmlDoc.getElementsByTagName("result").length;
+                let output = ``;
+                for(let i =0; i < length; i++){
+                    output += `
+                    <div id= "displayedresults">
+                            
+                            <input id= "check${i}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
+                            <hr> 
+                            <div class= "list-group mb-4"> 
+                                <li class="list-group-item list-group-item-info"> ${xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue} </li>
+                                
+                                <a class="list-group-item list-group-item-sucess" href="${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}" target="_blank">${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}</a>
+                                <li class="list-group-item list-group-item-warning"> ${xmlDoc.getElementsByTagName("description")[i].childNodes[0].nodeValue} </li>
+                              
+                            </div>`
+                }
+                document.getElementById('output').innerHTML = output;
+
+
+            })
+
+    }
+    function displayCSV(file){
+        var filename = file.files.item(0).name;
+        let url =`${filename}`;
+        console.log("URL" + url)
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+                console.log(data)
+                let lines = data.split('\n');
+                console.log(lines)
+                output = '';
+                for( let i=0;i < lines.length - 1; i++){
+                    let results = lines[i].split(',');
+                    output += `
+                    <div id= "displayedresults">
+                            
+                            <input id= "check${i}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
+                            <hr> 
+                            <div class= "list-group mb-4"> 
+                                <li class="list-group-item list-group-item-info"> ${results[0]} </li>
+                                
+                                <a class="list-group-item list-group-item-sucess" href="${results[1]}" target="_blank">${results[1]}</a>
+                                <li class="list-group-item list-group-item-warning"> ${results[2]} </li>
+                              
+                            </div>`    
+                }
+               
+            
+                
+                document.getElementById('output').innerHTML = output;
+
+
+            })
+
+    }
+    
+    
+    </script>
           
    <script>
        function displayFile(){
@@ -102,7 +239,7 @@
            var filename = file.files.item(0).name;
            let url =`${filename}`;
            fetch(url)
-           .then(res => res.text())
+           .then(res => res.json())
            .then(data =>{
                console.log(data);
 
@@ -114,6 +251,7 @@
            });
            output = `
             <a href="${file.files.item(0).name}" target="_blank">${file.files.item(0).name}</a>
+            <p> \ </p>
            `
            document.getElementById('output').innerHTML = output;
        }
@@ -131,6 +269,7 @@
     
     <script>
         document.getElementById('search-param').addEventListener('submit',getResults);
+      
         function getResults(e){
             e.preventDefault();
             let q = document.getElementById('searchfield').value;
@@ -139,24 +278,54 @@
                 .then((res) =>res.json())
                 .then((data) => {
                     console.log(data.items);
+                    count = 0;
                     data.items.forEach(search =>{
+                        
                         output += `
                         <div id= "displayedresults">
                             
-                            <input type="checkbox" name="searchfiles" value=searchfiles>
+                            <input id= "check${count}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
                             <hr>   
                             <div class= "list-group mb-4"> 
-                                <p class="list-group-item list-group-item-warning"> ${search.title} </p>
-                                <a class="list-group-item list-group-item-info" href="${search.link}" target="_blank">${search.link}</a>
+                                <li class="list-group-item list-group-item-info"> ${search.title} </li>
+                                
+                                <a class="list-group-item list-group-item-sucess" href="${search.link}" target="_blank">${search.htmlFormattedUrl}</a>
+                                <li class="list-group-item list-group-item-warning"> ${search.snippet} </li>
                               
                             </div>
                         </div>
                         `;
+                        count++;
                     })
                     document.getElementById('output').innerHTML = output;
                 })
         
-        }    
+        }
+
+        
+        function AllSelected(){
+            convertFileTo();
+        }
+        function toggle(source) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i] != source)
+                     checkboxes[i].checked = source.checked;
+              }
+        }
+
+        // function convertToJson();
+        // function covertToXML();
+        // function converToCSV();
+
+
+        
+        
+    </script>
+
+
+    <script>
+        
     </script>
 </body>
 
