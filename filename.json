@@ -1,1 +1,43 @@
-{"Result":[{"title":" R: The R Project for Statistical Computing","url":"https://www.r-project.org/","description":" R is a free software environment for statistical computing and graphics. It \ncompiles and runs on a wide variety of UNIX platforms, Windows and MacOS."},{"title":" The Comprehensive R Archive Network","url":"https://cran.r-project.org/","description":" Download and Install R. Precompiled binary distributions of the base system and \ncontributed packages, Windows and Mac users most likely want one of these ..."},{"title":" R (programming language) - Wikipedia","url":"https://en.wikipedia.org/wiki/R_(programming_language)","description":" R is a programming language and free software environment for statistical \ncomputing and graphics supported by the R Foundation for Statistical Computing."},{"title":" R/GA","url":"https://www.rga.com/","description":" R/GA is an innovation leader that drives marketing, experience, and business \ntransformation at speed."},{"title":" RStudio - RStudio","url":"https://rstudio.com/","description":" An integrated development environment for R, with a console, syntax-highlighting \neditor that supports direct code execution, and tools for plotting, history, ..."},{"title":" The Toys 'R' Us relaunch is giving families something they can't buy ...","url":"https://www.cnn.com/2019/11/01/business/toys-r-us-holiday.../index.html","description":" 14 hours ago ... New York (CNN Business) Toys \"R\" Us is returning to select malls in major \nmetropolitan areas this holiday season with what it hopes is an ..."},{"title":" mta.info | The Weekender","url":"web.mta.info/weekender/lineview.html?r=r","description":" ... L Subway Line S Subway Line B Subway Line D Subway Line F Subway Line \nM Subway Line N Subway Line Q Subway Line R Subway Line W Subway Line ..."},{"title":" Data Science Courses: R & Python Analysis Tutorials | DataCamp","url":"https://www.datacamp.com/courses/tech:r","description":" Intermediate R. Continue your journey to becoming an R ninja by learning about \nconditional statements, loops, and vector functions. 6 hours."},{"title":" Download RStudio - RStudio","url":"https://rstudio.com/products/rstudio/download/","description":" RStudio is a set of integrated tools designed to help you be more productive with \nR. It includes a console, syntax-highlighting editor that supports direct code ..."},{"title":" R-bloggers | R news and tutorials contributed by hundreds of R ...","url":"https://www.r-bloggers.com/","description":" Another minor release 0.1.5 of pkgKitten just hit on CRAN today, after a break of \nalmost three years. This release provides a few small changes. The default ..."}]}
+{
+    "Result": [{
+        "title": " R: The R Project for Statistical Computing",
+        "url": "https://www.r-project.org/",
+        "description": " R is a free software environment for statistical computing and graphics. It \ncompiles and runs on a wide variety of UNIX platforms, Windows and MacOS."
+    }, {
+        "title": " The Comprehensive R Archive Network",
+        "url": "https://cran.r-project.org/",
+        "description": " Download and Install R. Precompiled binary distributions of the base system and \ncontributed packages, Windows and Mac users most likely want one of these ..."
+    }, {
+        "title": " R (programming language) - Wikipedia",
+        "url": "https://en.wikipedia.org/wiki/R_(programming_language)",
+        "description": " R is a programming language and free software environment for statistical \ncomputing and graphics supported by the R Foundation for Statistical Computing."
+    }, {
+        "title": " R/GA",
+        "url": "https://www.rga.com/",
+        "description": " R/GA is an innovation leader that drives marketing, experience, and business \ntransformation at speed."
+    }, {
+        "title": " RStudio - RStudio",
+        "url": "https://rstudio.com/",
+        "description": " An integrated development environment for R, with a console, syntax-highlighting \neditor that supports direct code execution, and tools for plotting, history, ..."
+    }, {
+        "title": " The Toys 'R' Us relaunch is giving families something they can't buy ...",
+        "url": "https://www.cnn.com/2019/11/01/business/toys-r-us-holiday.../index.html",
+        "description": " 14 hours ago ... New York (CNN Business) Toys \"R\" Us is returning to select malls in major \nmetropolitan areas this holiday season with what it hopes is an ..."
+    }, {
+        "title": " mta.info | The Weekender",
+        "url": "web.mta.info/weekender/lineview.html?r=r",
+        "description": " ... L Subway Line S Subway Line B Subway Line D Subway Line F Subway Line \nM Subway Line N Subway Line Q Subway Line R Subway Line W Subway Line ..."
+    }, {
+        "title": " Data Science Courses: R & Python Analysis Tutorials | DataCamp",
+        "url": "https://www.datacamp.com/courses/tech:r",
+        "description": " Intermediate R. Continue your journey to becoming an R ninja by learning about \nconditional statements, loops, and vector functions. 6 hours."
+    }, {
+        "title": " Download RStudio - RStudio",
+        "url": "https://rstudio.com/products/rstudio/download/",
+        "description": " RStudio is a set of integrated tools designed to help you be more productive with \nR. It includes a console, syntax-highlighting editor that supports direct code ..."
+    }, {
+        "title": " R-bloggers | R news and tutorials contributed by hundreds of R ...",
+        "url": "https://www.r-bloggers.com/",
+        "description": " Another minor release 0.1.5 of pkgKitten just hit on CRAN today, after a break of \nalmost three years. This release provides a few small changes. The default ..."
+    }]
+}

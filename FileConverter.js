@@ -1,40 +1,40 @@
 //ConvertFile So It can be downloaded
-function ConvertFileToJSON(){
+function ConvertFileToJSON() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     let format = [];
 
-    for(var x = 1; x < checkboxes.length; x++){
+    for (var x = 1; x < checkboxes.length; x++) {
         //console.log(checkboxes[x])
-        if(checkboxes[x].checked == true){
+        if (checkboxes[x].checked == true) {
             console.log(x + "OK")
             let resultag = document.getElementById(`check${x-1}`).nextElementSibling.nextElementSibling.childNodes;
             //console.log(resultag)
             console.log(resultag[1].textContent)
             console.log(resultag[3].textContent)
             console.log(resultag[5].textContent)
-                let dataobject = {
-                    title : resultag[1].textContent,
-                    url : resultag[3].textContent,
-                    description : resultag[5].textContent
-                }
-                format.push(dataobject);
+            let dataobject = {
+                title: resultag[1].textContent,
+                url: resultag[3].textContent,
+                description: resultag[5].textContent
             }
-        
+            format.push(dataobject);
+        }
+
     }
 
-   download(format)
-    
-    
+    download(format)
+
+
 
 }
 
-function ConvertFileToXML(){
+function ConvertFileToXML() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     let format = '';
 
-    for(var x = 1; x < checkboxes.length; x++){
-        
-        if(checkboxes[x].checked == true){
+    for (var x = 1; x < checkboxes.length; x++) {
+
+        if (checkboxes[x].checked == true) {
             let resultag = document.getElementById(`check${x-1}`).nextElementSibling.nextElementSibling.childNodes;
 
             format += `
@@ -46,21 +46,21 @@ function ConvertFileToXML(){
         }
 
     }
-    
+
     downloadxml(format)
 
 }
 
-function ConvertFileToCSV(){
+function ConvertFileToCSV() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     let format = '';
 
-    for(var x = 1; x < checkboxes.length; x++){
-        
-        if(checkboxes[x].checked == true){
+    for (var x = 1; x < checkboxes.length; x++) {
+
+        if (checkboxes[x].checked == true) {
             let resultag = document.getElementById(`check${x-1}`).nextElementSibling.nextElementSibling.childNodes;
 
-            format +=`
+            format += `
             " ${resultag[3].textContent},${resultag[1].textContent},${resultag[5].textContent}"`
         }
     }

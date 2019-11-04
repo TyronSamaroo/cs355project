@@ -1,30 +1,28 @@
+function displayFile() {
 
-
-
-function displayFile(){
-           
     var file = document.getElementById('uploadedFile');
     console.log(file.files.item(0));
     var filename = file.files.item(0).name;
-    let url =`${filename}`;
+    let url = `${filename}`;
     fetch(url)
-    .then(res => res.json())
-    .then(data =>{
-        console.log(data);
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
 
-        let parser = new DOMParser();
-        let xml = parser.parseFromString(data,"application/xml");
-        //document.getElementById('output').textContent = data;
-        console.log(xml)
-        results(xml);
-    });
+            let parser = new DOMParser();
+            let xml = parser.parseFromString(data, "application/xml");
+            //document.getElementById('output').textContent = data;
+            console.log(xml)
+            results(xml);
+        });
     output = `
      <a href="${file.files.item(0).name}" target="_blank">${file.files.item(0).name}</a>
      <p> \ </p>
     `
     document.getElementById('output').innerHTML = output;
 }
-function results(xml){
+
+function results(xml) {
     let title = document.getElementById('title');
     let url = document.getElementById('url');
     let discription = document.getElementById('discription');
@@ -32,22 +30,22 @@ function results(xml){
 }
 
 
-function displayJSON(file){
-        
+function displayJSON(file) {
+
     var filename = file.files.item(0).name;
     console.log(filename)
-    
-    let url =`${filename}`;
+
+    let url = `${filename}`;
     console.log("URL " + url)
     fetch(url)
         .then(res => res.json())
         .then(data => {
-            
-           
+
+
             // data.items.forEach(search =>{ })
             let output = ''
             count = 0;
-            data.Result.forEach(search =>{
+            data.Result.forEach(search => {
                 output += `
                         <div id= "displayedresults">
                         
@@ -60,28 +58,28 @@ function displayJSON(file){
                             <li class="list-group-item list-group-item-warning">${search.description}</li>
                           
                         </div>`
-                        count++;
-                    })
-                
+                count++;
+            })
+
             document.getElementById('output').innerHTML = output;
         })
-    
+
 }
 
-function displayXML(file){
+function displayXML(file) {
     var filename = file.files.item(0).name;
-    let url =`${filename}`;
+    let url = `${filename}`;
     console.log("URL" + url)
     fetch(url)
         .then(res => res.text())
         .then(data => {
             console.log(data)
             parser = new DOMParser();
-            xmlDoc = parser.parseFromString(data,"text/xml");
+            xmlDoc = parser.parseFromString(data, "text/xml");
             console.log(xmlDoc)
             let length = xmlDoc.getElementsByTagName("result").length;
             let output = ``;
-            for(let i =0; i < length; i++){
+            for (let i = 0; i < length; i++) {
                 output += `
                 <div id= "displayedresults">
                         
@@ -101,9 +99,10 @@ function displayXML(file){
         })
 
 }
-function displayCSV(file){
+
+function displayCSV(file) {
     var filename = file.files.item(0).name;
-    let url =`${filename}`;
+    let url = `${filename}`;
     console.log("URL" + url)
     fetch(url)
         .then(res => res.text())
@@ -112,7 +111,7 @@ function displayCSV(file){
             let lines = data.split('\n');
             console.log(lines)
             output = '';
-            for( let i=0;i < lines.length - 1; i++){
+            for (let i = 0; i < lines.length - 1; i++) {
                 let results = lines[i].split(',');
                 output += `
                 <div id= "displayedresults">
@@ -125,11 +124,11 @@ function displayCSV(file){
                             <a class="list-group-item list-group-item-sucess" href="${results[1]}" target="_blank">${results[1]}</a>
                             <li class="list-group-item list-group-item-warning">${results[2]}</li>
                           
-                        </div>`    
+                        </div>`
             }
-           
-        
-            
+
+
+
             document.getElementById('output').innerHTML = output;
 
 

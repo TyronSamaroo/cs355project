@@ -24,7 +24,7 @@
                     <li class="active"><a href="index.html">Home</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Browser
-              <span class="caret"></span></a>
+                            <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="browser.html#Navigator">Navigator</a></li>
                             <li><a href="browser.html#Window">Window</a></li>
@@ -36,18 +36,19 @@
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Course
-              <span class="caret"></span></a>
+                            <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="https://www.zybooks.com" target="_blank">Zybook</a></li>
                             <li><a href="https://tophat.com/" target="_blank">TopHat</a></li>
-                            <li><a href="https://tinyurl.com/CSCI355-Fall2019" target="_blank">Course Google Drive</a></li>
+                            <li><a href="https://tinyurl.com/CSCI355-Fall2019" target="_blank">Course Google Drive</a>
+                            </li>
                             <li><a href="https://www.w3schools.com/" target="_blank">W3Schools</a></li>
                         </ul>
 
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">About
-              <span class="caret"></span></a>
+                            <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="aboutme.html">Developer</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
@@ -57,8 +58,8 @@
             </div>
         </div>
     </nav>
-    
-<!-- 
+
+    <!-- 
     <form action="Test1.asp">
         <input type="button" value="Upload" onclick="clickUpload();" />
         <input type="button" value="Download" onclick="clickDownload();" />
@@ -68,53 +69,55 @@
         <form id="DownloadForm" action="Test4.asp">
         </form>
     </form> -->
-    
 
-    
-    <div style="text-align: center;padding: 20%"> 
-           
-        
-            <h1 id="searchtitle">SEARCH HERE</h1>
-            <form id="search-param" class="input-group">
-                <input class="form-control" id="searchfield" type="text" placeholder="Search..">
-                <span class="input-group-btn"><input class ="btn btn-primary" type="submit" value="Submit"></span>
 
-            </form> 
-            <hr>
-            <div class="input-group">
-                <!-- <form method="post">
+
+    <div style="text-align: center;padding: 20%">
+
+
+        <h1 id="searchtitle">SEARCH HERE</h1>
+        <form id="search-param" class="input-group">
+            <input class="form-control" id="searchfield" type="text" placeholder="Search..">
+            <span class="input-group-btn"><input class="btn btn-primary" type="submit" value="Submit"></span>
+
+        </form>
+        <hr>
+        <div class="input-group">
+            <!-- <form method="post">
                     <input type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv" >
                 </form> -->
-                
-                    <input type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv" onchange="handleChange()"/>
-                  
-                <br>
-                <button  class="input-group" onclick="displayUploadedFile(this.value);">Click To Display Uploaded File Results</button>
-                
-            </div>
-            
-            
-            <hr>
 
-            <h2 id="searchtitle">RESULTS</h2>
-            <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default" onclick="ConvertFileToJSON()">JSON</button>
-                    <button type="button" class="btn btn-default" onclick="ConvertFileToXML()">XML</button>
-                    <button type="button" class="btn btn-default" onclick="ConvertFileToCSV()">CSV</button>
-            </div>
-            <input type="checkbox" onClick="toggle(this)" />
-            
-            <hr>
-            <div id="output">
+            <input type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv"
+                onchange="handleChange()" />
 
-            </div>
+            <br>
+            <button class="input-group" onclick="displayUploadedFile(this.value);">Click To Display Uploaded File
+                Results</button>
+
+        </div>
+
+
+        <hr>
+
+        <h2 id="searchtitle">RESULTS</h2>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" onclick="ConvertFileToJSON()">JSON</button>
+            <button type="button" class="btn btn-default" onclick="ConvertFileToXML()">XML</button>
+            <button type="button" class="btn btn-default" onclick="ConvertFileToCSV()">CSV</button>
+        </div>
+        <input type="checkbox" onClick="toggle(this)" />
+
+        <hr>
+        <div id="output">
+
+        </div>
     </div>
-    
+
 
     </div>
     <script src="GoogleSearchDisplay.js"></script>
     <script src="Upload.js"></script>
-    <script src="ChecknDownload.js"></script>       
+    <script src="ChecknDownload.js"></script>
     <script src="InfoDisplay.js"></script>
     <script src="FileConverter.js"></script>
 </body>

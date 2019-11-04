@@ -1,19 +1,19 @@
 // This uses google search api to return result to page
 
-document.getElementById('search-param').addEventListener('submit',getResults);
-      
-function getResults(e){
+document.getElementById('search-param').addEventListener('submit', getResults);
+
+function getResults(e) {
     e.preventDefault();
     let q = document.getElementById('searchfield').value;
     output = ``;
     fetch(`https://www.googleapis.com/customsearch/v1?cx=005328335594563973105:loxqirrkk08&key=AIzaSyCQ2Wnm30rrgRQ1Zknyk1XGAYljRYlo6do&q=${q}`)
-        .then((res) =>res.json())
+        .then((res) => res.json())
         .then((data) => {
             console.log(data);
             console.log(data.items);
             count = 0;
-            data.items.forEach(search =>{
-                
+            data.items.forEach(search => {
+
                 output += `
                 <div id= "displayedresults">
                     
