@@ -35,7 +35,7 @@ function download(format) {
 function downloadxml(format) {
     let final = `<?xml version="1.0" encoding="UTF-8"?>
     <results>
-    ${format}
+        ${format}
     </results>`
     let text = final
     console.log(final)

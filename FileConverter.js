@@ -39,10 +39,10 @@ function ConvertFileToXML() {
             let resultag = document.getElementById(`check${x-1}`).nextElementSibling.nextElementSibling.childNodes;
 
             format += `<result>
-                <title>${resultag[1].textContent}</title>
-                <url>${resultag[3].textContent}</url>
-                <description>${resultag[5].textContent}</description>
-            </result> `
+                <title>${resultag[1].textContent.replace(/&/g, '&amp;')}</title>
+                <url>${resultag[3].textContent.replace(/&/g, '&amp;')}</url>
+                <description>${resultag[5].textContent.replace(/&/g, '&amp;')}</description>
+        </result>\r`
         }
 
     }

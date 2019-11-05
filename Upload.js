@@ -111,7 +111,8 @@ function uploadedString(res) {
         let lines = res.split(/\n/);
         console.log(lines)
         console.log("LINES " + lines[0])
-        console.log("LINES " + lines[1])
+        console.log("LINES " + lines[lines.length-2])
+
         output = ``;
         for (let i = 0; i < lines.length - 1; i++) {
             let results = lines[i].split(/","/);
