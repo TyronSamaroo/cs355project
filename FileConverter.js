@@ -1,5 +1,6 @@
 //ConvertFile So It can be downloaded
 function ConvertFileToJSON() {
+    console.log("CONVERTING TO JSON")
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     let format = [];
 
@@ -31,14 +32,13 @@ function ConvertFileToJSON() {
 function ConvertFileToXML() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
     let format = '';
-
+    console.log("CONVERTING")
     for (var x = 1; x < checkboxes.length; x++) {
 
         if (checkboxes[x].checked == true) {
             let resultag = document.getElementById(`check${x-1}`).nextElementSibling.nextElementSibling.childNodes;
 
-            format += `
-            <result>
+            format += `<result>
                 <title>${resultag[1].textContent}</title>
                 <url>${resultag[3].textContent}</url>
                 <description>${resultag[5].textContent}</description>
@@ -46,8 +46,12 @@ function ConvertFileToXML() {
         }
 
     }
+    console.log(format)
+    parser = new DOMParser();
+    xmlDoc = parser.parseFromString(format, "text/xml");
+    console.log("??? " + xmlDoc)
 
-    downloadxml(format)
+    downloadxml(xmlDoc)
 
 }
 
@@ -59,7 +63,7 @@ function ConvertFileToCSV() {
 
         if (checkboxes[x].checked == true) {
             let resultag = document.getElementById(`check${x-1}`).nextElementSibling.nextElementSibling.childNodes;
-
+            console.log(resultag)
             format += `"${resultag[1].textContent}","${resultag[3].textContent}","${resultag[5].textContent}"\n`;
         }
         console.log("THIS IS THE FORMAT BEFORE DOWNLOAD" + format)
