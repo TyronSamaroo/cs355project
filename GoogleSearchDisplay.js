@@ -22,7 +22,7 @@ function getResults(e) {
                     <div class= "list-group mb-4" id= "results${count}"> 
                         <li class="list-group-item list-group-item-info">${search.title}</li>
                         
-                        <a class="list-group-item list-group-item-sucess" href="${search.link}" target="_blank">${search.link}</a>
+                        <a class="list-group-item list-group-item-success" href="${search.link}" target="_blank">${search.link}</a>
                         <li class="list-group-item list-group-item-warning">${search.snippet}</li>
                       
                     </div>

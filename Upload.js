@@ -22,7 +22,7 @@ function displayUploadedFile() {
     let reader = new FileReader();
     reader.readAsText(file.files.item(0));
     reader.onload = (e) => {
-        res = reader.result
+        res = `${reader.result}`
         console.log("upload file" + res)
         uploadedString(res)
     }
@@ -53,7 +53,7 @@ function uploadedString(res) {
                     <div class= "list-group mb-4" id= "results${count}"> 
                         <li class="list-group-item list-group-item-info"> ${search.title}</li>
                         
-                        <a class="list-group-item list-group-item-sucess" href="${search.url}" target="_blank">${search.url}</a>
+                        <a class="list-group-item list-group-item-success" href="${search.url}" target="_blank">${search.url}</a>
                         <li class="list-group-item list-group-item-warning"> ${search.description}</li>
                       
                     </div>
@@ -71,6 +71,7 @@ function uploadedString(res) {
     if (file.value.split('.')[1] == 'xml') {
         console.log("XML FILE")
         console.log(res)
+
         parser = new DOMParser();
         xmlDoc = parser.parseFromString(res, "text/xml");
         console.log(xmlDoc)
@@ -85,7 +86,7 @@ function uploadedString(res) {
                         <div class= "list-group mb-4" id= "result${i}"> 
                             <li class="list-group-item list-group-item-info">${xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue}</li>
                             
-                            <a class="list-group-item list-group-item-sucess" href="${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}" target="_blank">${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}</a>
+                            <a class="list-group-item list-group-item-success" href="${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}" target="_blank">${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}</a>
                             <li class="list-group-item list-group-item-warning">${xmlDoc.getElementsByTagName("description")[i].childNodes[0].nodeValue}</li>
                           
                         </div>`
@@ -98,12 +99,23 @@ function uploadedString(res) {
         //displayXML(file)
     }
     if (file.value.split('.')[1] == 'csv') {
-        console.log("CSV FILE")
-        let lines = res.split(/"\n"/);
+        console.log("CSV FILE");
+        
+        console.log("Resonpse " + res);
+        console.log(encodeURIComponent(res))
+        console.log(res.length)
+        //res = res.trim()
+        console.log(res.length)
+        //res = res.substring(1,res.length-1)
+        console.log("new " + res)
+        let lines = res.split(/\n/);
+        console.log(lines)
+        console.log("LINES " + lines[0])
+        console.log("LINES " + lines[1])
         output = ``;
-        for (let i = 0; i < lines.length; i++) {
+        for (let i = 0; i < lines.length - 1; i++) {
             let results = lines[i].split(/","/);
-            console.log(results)
+            console.log("RESULTS " + results)
             output += `
             <div id= "displayedresults">
 
@@ -112,11 +124,12 @@ function uploadedString(res) {
                     <div class= "list-group mb-4" id= "result${i}"> 
                         <li class="list-group-item list-group-item-info">${results[0]}</li>
 
-                        <a class="list-group-item list-group-item-sucess" href="${results[1]}" target="_blank">${results[1]}</a>
+                        <a class="list-group-item list-group-item-success" href="${results[1]}" target="_blank">${results[1]}</a>
                         <li class="list-group-item list-group-item-warning">${results[2]}</li>
 
                     </div>`
         }
+        //console.log("CSV RESULT" + output)
 
 
 

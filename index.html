@@ -86,11 +86,12 @@
             <!-- <form method="post">
                     <input type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv" >
                 </form> -->
-
-            <input type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv"
+        
+            <input class="input-group" type="file" id="uploadedFile" name="uploadedFile" accept=".json,.xml,.csv"
                 onchange="handleChange()" />
-
+                
             <br>
+            
             <button class="input-group" onclick="displayUploadedFile(this.value);">Click To Display Uploaded File
                 Results</button>
 

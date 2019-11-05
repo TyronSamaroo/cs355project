@@ -38,8 +38,9 @@ function downloadxml(format) {
     ${format}
     </results>`
     let text = final
+    console.log(final)
     let element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('href', 'data:xml/plain;charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', `filename.xml`);
     element.style.display = 'none';
     document.body.appendChild(element);
@@ -51,7 +52,9 @@ function downloadxml(format) {
 function downloadcsv(format) {
     let text = format
     let element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    console.log(encodeURIComponent(text))
+    console.log(encodeURI(text))
+    element.setAttribute('href','data:charset=utf-8,' + encodeURIComponent(text));
     element.setAttribute('download', `filename.csv`);
     element.style.display = 'none';
     document.body.appendChild(element);
