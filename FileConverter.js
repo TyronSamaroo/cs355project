@@ -60,9 +60,9 @@ function ConvertFileToCSV() {
         if (checkboxes[x].checked == true) {
             let resultag = document.getElementById(`check${x-1}`).nextElementSibling.nextElementSibling.childNodes;
 
-            format += `
-            " ${resultag[3].textContent},${resultag[1].textContent},${resultag[5].textContent}"`
+            format += `"${resultag[1].textContent}","${resultag[3].textContent}","${resultag[5].textContent}"\n`;
         }
+        console.log("THIS IS THE FORMAT BEFORE DOWNLOAD" + format)
     }
     downloadcsv(format)
 }

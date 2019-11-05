@@ -20,10 +20,10 @@ function getResults(e) {
                     <input id= "check${count}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected(this)">
                     <hr>   
                     <div class= "list-group mb-4" id= "results${count}"> 
-                        <li class="list-group-item list-group-item-info"> ${search.title}</li>
+                        <li class="list-group-item list-group-item-info">${search.title}</li>
                         
                         <a class="list-group-item list-group-item-sucess" href="${search.link}" target="_blank">${search.link}</a>
-                        <li class="list-group-item list-group-item-warning"> ${search.snippet}</li>
+                        <li class="list-group-item list-group-item-warning">${search.snippet}</li>
                       
                     </div>
                 </div>

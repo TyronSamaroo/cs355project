@@ -23,6 +23,7 @@ function displayUploadedFile() {
     reader.readAsText(file.files.item(0));
     reader.onload = (e) => {
         res = reader.result
+        console.log("upload file" + res)
         uploadedString(res)
     }
 
@@ -41,6 +42,7 @@ function uploadedString(res) {
         let a = JSON.parse(res);
         console.log(a.Result)
         count = 0;
+        output= '';
         a.Result.forEach(search => {
 
             output += `
@@ -68,11 +70,59 @@ function uploadedString(res) {
     }
     if (file.value.split('.')[1] == 'xml') {
         console.log("XML FILE")
-        displayXML(file)
+        console.log(res)
+        parser = new DOMParser();
+        xmlDoc = parser.parseFromString(res, "text/xml");
+        console.log(xmlDoc)
+        let length = xmlDoc.getElementsByTagName("result").length;
+        let output = ``;
+        for (let i = 0; i < length; i++) {
+            output += `
+                <div id= "displayedresults">
+                        
+                        <input id= "check${i}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
+                        <hr> 
+                        <div class= "list-group mb-4" id= "result${i}"> 
+                            <li class="list-group-item list-group-item-info">${xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue}</li>
+                            
+                            <a class="list-group-item list-group-item-sucess" href="${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}" target="_blank">${xmlDoc.getElementsByTagName("url")[i].childNodes[0].nodeValue}</a>
+                            <li class="list-group-item list-group-item-warning">${xmlDoc.getElementsByTagName("description")[i].childNodes[0].nodeValue}</li>
+                          
+                        </div>`
+        }
+        document.getElementById('output').innerHTML = output;
+
+
+        //let a = JSON.parse(res);
+        //console.log(a.Result)
+        //displayXML(file)
     }
     if (file.value.split('.')[1] == 'csv') {
         console.log("CSV FILE")
-        displayCSV(file)
+        let lines = res.split(/"\n"/);
+        output = ``;
+        for (let i = 0; i < lines.length; i++) {
+            let results = lines[i].split(/","/);
+            console.log(results)
+            output += `
+            <div id= "displayedresults">
+
+                    <input id= "check${i}" type="checkbox" name="searchfiles" value=searchfiles onclick="isSelected()">
+                    <hr> 
+                    <div class= "list-group mb-4" id= "result${i}"> 
+                        <li class="list-group-item list-group-item-info">${results[0]}</li>
+
+                        <a class="list-group-item list-group-item-sucess" href="${results[1]}" target="_blank">${results[1]}</a>
+                        <li class="list-group-item list-group-item-warning">${results[2]}</li>
+
+                    </div>`
+        }
+
+
+
+        document.getElementById('output').innerHTML = output;
+
+
     }
 }
 
